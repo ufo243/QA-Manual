@@ -1,0 +1,154 @@
+﻿New User Registration
+Steps to reproduce
+1) Create POST request: http://taxi.rexit.info/api/v1/registration/regular
+2) Paste in request body code from http://taxi.rexit.info/site/doc#user-logout-loginlogout => Registration with password. [/registration/regular]
+3) Change pnone number from "+380963983468" to "+380963983462"
+4) Change surname from "Valentinovich" to "Vasyliovich"
+5) Change lastname from "Nikulin" to "Vasyliev"
+6) Change firstname from "Konstantin" to "Vasya"
+7) Change email from "vasya@gmail.com"
+8) Start POST request: http://taxi.rexit.info/api/v1/registration/regular
+Expected result:
+User was registered (HTTP/1.1 200 OK
+)
+Actual result:
+User was registered (HTTP/1.1 200 OK
+)
+
+Check on re-registration user with the same data 
+Steps to reproduce
+1) Start POST request: http://taxi.rexit.info/api/v1/registration/regular with the same code
+Expected result:
+User wasn't created (HTTP/1.1 422 Unprocessable entity
+)
+Actual result:
+User wasn't created (HTTP/1.1 422 Unprocessable entity
+)
+
+Check on re-registration user with the new phone number
+Steps to reproduce
+1) Delete "+" from pnone number and start POST request: 
+2) Add "space" before phone number; between digits; after phone number 
+3) Delete "380" from pnone number 
+4) Add in "phone" field number with "++", "+-", "-"
+5) Add in "phone" field some number with 8 digitals  
+6) Add in "phone" field number with special symbols " ! @ # є  ;$ % ^ : & ? * ( ) _ ` = { } " [ ] / \ < > | . , "
+7) Add in "phone" field number with one, two and three latin letters
+8) Start POST request after each step
+Expected result:
+Steps 1, 2 - user was registered (HTTP/1.1 200 OK
+)
+Steps 3 - 7 - user wasn't registered (HTTP/1.1 422 Unprocessable entity
+)
+Actual result
+Steps 1, 2, 3, 4 - user was registered (HTTP/1.1 200 OK
+)
+Step 5 - user wasn't registered (HTTP/1.1 422 Unprocessable entity
+)
+Step 6 - user wasn't registered only with symbols " and \
+Step 7 - user wasn't registered only with three latin letters
+
+Check on re-registration user with the new surname,  lastname, firstname
+Steps to reproduce
+1) Add in  "surname", "lastname", "firstname" fields name with letters and digitals  from 1 to 50
+2) Add in "surname" field name with "space", "null", 
+3) Add in "lastname" and  "firstname" fields name with "space", "null"
+4)  Add in  "surname", "lastname", "firstname" fields name with "-", " ` "
+5) Add in  "surname", "lastname", "firstname" fields name with special symbols " ! @ # є  ;$ % ^ : & ? * ( ) _ = { } " [ ] / \ < > | . , "
+Expected result:
+Step 1, 4 - user was registered (HTTP/1.1 200 OK
+)
+Steps 2,3,5 - user wasn't registered (HTTP/1.1 422 Unprocessable entity
+)
+Actual result:
+Steps 1, 2, 4 - user was registered (HTTP/1.1 200 OK
+)
+Step 3 - user wasn't registered (HTTP/1.1 422 Unprocessable entity
+)
+Step 5 - user wasn't registered only with symbols " and \
+
+Check on re-registration user with the new email 
+1) Add in email name from 1 to 50  letters and digitals  before "@", after "@" and after "."
+2) Add in email name another one "@"  before "@" and after "."
+3) Add in email name "." and "-" before "@", after "@" and after "."
+4) Add in email name "_"  before "@", after "@" and after "."
+5) Add in "email" field mail with special symbols " ! # є  ;$ % ^ : & ? * ( ) ` = { } " [ ] / \ < > | , "
+Expected result
+Step 1, 3 - user was registered (HTTP/1.1 200 OK
+)
+Step 4 - user was registered (HTTP/1.1 200 OK
+) with symbol "_"only before "@"
+Step 2, 5 - user wasn't registered (HTTP/1.1 422 Unprocessable entity
+)
+Actual result
+Step 1, 3 - user was registered (HTTP/1.1 200 OK
+)
+Step 4 - user was registered (HTTP/1.1 200 OK
+) with symbol "_"only before "@"
+Step 2, 5 - user wasn't registered (HTTP/1.1 422 Unprocessable entity
+)
+
+Can't get driver profile
+Steps to reproduce
+1) Create GET request /profile/get-driver?id=driver_id
+2) Press start GET request
+Expected result
+You must get response
+{
+  "_id": "ygzi4oveZWESaJzRZ",
+  "phone": "+380953983111",
+  "profile": {
+    "firstname": "drake",
+    "lastname": "drake",
+    "surname": "drake",
+    "email": "drake@gmail.com"
+  },
+  "role": "2",
+  "photo": null,
+  "rating": <driver rating>,
+  "car": {
+    "_id":<car id>,
+    "modelId":<model id>,
+    "registrationNumber":<car registration number>,
+    "dateOfRegistration":<date of car registration>,
+    "class":<car class>,
+    "appearance": []
+  }
+}
+Actual result
+{
+   "name": "Bad Request",
+   "message": "Missing required parameters: id",
+   "code": 0,
+   "status": 400,
+   "type": "yii\\web\\BadRequestHttpException"
+}
+
+Can't get region settings
+Steps to reproduce
+1) Create POST request /data/region
+2)Add body:
+{
+    УcountryФ: У”краинаФ
+    УdistrictФ: Уќдесска¤ областьФ
+    "city": "ќдесса"
+}
+3) Press start POST request
+Expected result
+{
+    "_id": 1
+    "name": "¬инница"
+    "status": 1
+    "jamMinutePrice": 123
+    "idleMinutePrice": 123
+    "pricePerKm": null
+    "arrivalPrice": null
+    "weatherMultiplier": null
+    "holidayMultiplier": null
+    "freeKmValue": null
+    "jamFreeTime": null
+    "waitingFreeTime": null
+}
+Actual result
+{"message": "No data provided or region not found"}
+
