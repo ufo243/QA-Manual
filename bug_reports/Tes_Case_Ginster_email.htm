@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Print Test Case: Sasha Fabizhevskyi</title>
+<link type="text/css" rel="stylesheet" href="http://soft.it-hillel.com.ua/gui/themes/default/css/tl_documents.css" />
+<style type="text/css" media="print">.notprintable { display:none;}</style>
+<script type="text/javascript" src="http://soft.it-hillel.com.ua/gui/javascript/testlink_library.js" language="javascript"></script>
+<script type="text/javascript" language="javascript"><!-- var fRoot = 'http://soft.it-hillel.com.ua/'; --></script>
+
+</head>
+<p>&nbsp;</p><div> <table class="tc" width="90%" style="margin-left: 0;"><tr><th colspan="4">Test Case EP-28: Sasha Fabizhevskyi&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">economists - 01/18/2017 14:40:51</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>
+	Testing &quot;email&quot; data type column.</p>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><p>
+	Create new table on https://mydev.ginstr.com/ with &quot;email&quot; data type column.</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field &quot;Jonny&quot;, &quot;enter e-mail&quot; field &quot;123@gmail.com&quot;</p>
+</td><td><p>
+	New record was added.</p>
+</td></tr><tr><td width="5">2</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field &quot;123&quot;, &quot;enter e-mail&quot; field &quot;123@gmail.com&quot;</p>
+</td><td><p>
+	&nbsp;New record was added.</p>
+</td></tr><tr><td width="5">3</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field &quot;123Jonny&quot;, &quot;enter e-mail&quot; field &quot;123 @gmail.com&quot;</p>
+</td><td><p>
+	New record wasn&#39;t added (error - email is not valid)</p>
+</td></tr><tr><td width="5">4</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field &quot;123Jonny&quot;, &quot;enter e-mail&quot; field &quot;123@gmail.com&quot;</p>
+</td><td><p>
+	New record was added.</p>
+</td></tr><tr><td width="5">5</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field &quot;123Jonny&quot;, &quot;enter e-mail&quot; field &quot;123&quot;</p>
+</td><td><p>
+	New record wasn&#39;t added (error - email is not valid)</p>
+</td></tr><tr><td width="5">6</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field &quot;null&quot;, &quot;enter e-mail&quot; field &quot;123@gmail.com&quot;</p>
+</td><td><p>
+	New record was added.</p>
+</td></tr><tr><td width="5">7</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field &quot;space&quot;, &quot;enter e-mail&quot; field &quot;123@gmail.com&quot;</p>
+</td><td><p>
+	New record was added.</p>
+</td></tr><tr><td width="5">8</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field &quot;space, &quot;enter e-mail&quot; field &quot;space&quot;</p>
+</td><td><p>
+	New record wasn&#39;t added.</p>
+</td></tr><tr><td width="5">9</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field |] ~!@/*$%^&amp;C)?&lt;&gt;&#39;=+&quot;, &quot;enter e-mail&quot; field &quot;123@gmail.com&quot;</p>
+</td><td><p>
+	&nbsp;New record was added.</p>
+</td></tr><tr><td width="5">10</td><td><p>
+	Click add record button. Input &quot;enter name&quot; field &quot;123Jonny&quot;. Input &quot;enter e-mail&quot; field with some unacceptable symbol - (US), like |] ~!@/*$%^&amp;C)?&lt;&gt;&#39;=+&quot; .Example: &quot;1_(US)_23@gmail.com&quot;. Repeat this step with each of this symbols</p>
+</td><td><p>
+	New record wasn&#39;t added (error - email is not valid)<br />
+	&nbsp;</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="3">&nbsp;None<br></td></tr>
+</table>
+</div>
